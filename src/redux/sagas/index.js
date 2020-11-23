@@ -1,11 +1,11 @@
-import { all } from 'redux-saga/effects';
-// import { rootAuthSagas } from './auth'
+import { all, fork } from 'redux-saga/effects';
+import { rootProjectSagas } from './project'
 
 /**
  * rootSaga
  */
 export default function* root() {
   yield all([
-    // fork(rootAuthSagas)
+    fork(rootProjectSagas)
   ]);
 }
