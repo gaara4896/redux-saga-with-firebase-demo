@@ -1,53 +1,72 @@
-import { call, fork, put, take } from 'redux-saga/effects';
-import firebase from '../../firebase';
-import { authActions } from './actions';
+// import { all, call, fork, put, take } from 'redux-saga/effects';
+// // import firebase from '../../firebase';
+// import { firebaseAuth } from '../../firebase'
+// import { authActions } from '../actions';
+
+// function* signUp(data) {
+//   try {
+//     const userData = yield call([firebaseAuth, firebaseAuth.createUserWithEmailAndPassword], data.email, data.password)
+//     yield put(authActions.signUpFulfilled(userData))
+//   } catch (error) {
+//     // yield put(authActions.signUpFailed(error))
+//   }
+// }
+
+// function* signIn(payload) {
+//   try {
+//     const authData = yield call(firebaseAuth.login, payload);
+//     yield put(authActions.signInFulfilled(authData));
+//   }
+//   catch (error) {
+//     // yield put(authActions.signInFailed(error));
+//   }
+// }
+
+// function* signOut() {
+//   try {
+//     yield call(firebaseAuth.logout);
+//     yield put(authActions.signOutFulfilled());
+//   }
+//   catch (error) {
+//     // yield put(authActions.signOutFailed(error));
+//   }
+// }
 
 
-function* signIn(authProvider) {
-  try {
-    const authData = yield call(firebase.login, authProvider);
-    yield put(authActions.signInFulfilled(authData));
-  }
-  catch (error) {
-    // yield put(authActions.signInFailed(error));
-  }
-}
+// //=====================================
+// //  WATCHERS
+// //-------------------------------------
 
-function* signOut() {
-  try {
-    yield call(firebase.logout);
-    yield put(authActions.signOutFulfilled());
-  }
-  catch (error) {
-    // yield put(authActions.signOutFailed(error));
-  }
-}
+// function* watchCreateUser() {
+//   while (true) {
+//     let { data } = yield take(authActions.SIGN_UP.REQUEST);
+//     yield fork(signUp, data)
+//   }
+// }
 
+// function* watchSignIn() {
+//   while (true) {
+//     let { payload } = yield take(authActions.SIGN_IN.REQUEST);
+//     yield fork(signIn, payload);
+//   }
+// }
 
-//=====================================
-//  WATCHERS
-//-------------------------------------
-
-function* watchSignIn() {
-  while (true) {
-    let { payload } = yield take(authActions.SIGN_IN.REQUEST);
-    yield fork(signIn, payload.authProvider);
-  }
-}
-
-function* watchSignOut() {
-  while (true) {
-    yield take(authActions.SIGN_OUT.REQUEST);
-    yield fork(signOut);
-  }
-}
+// function* watchSignOut() {
+//   while (true) {
+//     yield take(authActions.SIGN_OUT.REQUEST);
+//     yield fork(signOut);
+//   }
+// }
 
 
-//=====================================
-//  AUTH SAGAS
-//-------------------------------------
+// //=====================================
+// //  AUTH SAGAS
+// //-------------------------------------
 
-export const authSagas = [
-  fork(watchSignIn),
-  fork(watchSignOut)
-];
+// export function* rootAuthSagas() {
+//   yield all([
+//     fork(watchCreateUser),
+//     fork(watchSignIn),
+//     fork(watchSignOut)
+//   ])
+// }

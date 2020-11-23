@@ -10,7 +10,7 @@ const reducer = persistReducer(
   {
     key: 'todo-demo',
     storage,
-    whitelist: ['auth'],
+    whitelist: [],
   },
   rootReducer,
 );

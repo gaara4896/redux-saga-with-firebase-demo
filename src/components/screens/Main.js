@@ -1,7 +1,14 @@
 import { DatePicker } from 'antd'
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useFirebase } from 'react-redux-firebase'
 
 const Main = () => {
+  const firebase = useFirebase()
+  useEffect(() => {
+    firebase.logout()
+
+  }, [])
+
   return (
     <div>
       <DatePicker />

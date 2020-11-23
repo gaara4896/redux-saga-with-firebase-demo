@@ -17,6 +17,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig)
 firebase.analytics()
 firebase.firestore()
+export const firebaseAuth = firebase.auth()
 
 export const rrfConfig = {
   userProfile: 'users',
